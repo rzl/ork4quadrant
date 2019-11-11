@@ -1,0 +1,17 @@
+{
+  "development2": {
+    "dialect": "sqlite",
+    "storage": "database.sqlite",
+    "retry": {
+      "max": 10
+    }
+  },
+  "development": {
+    "username": "root",
+    "password": "123456",
+    "database": "okr",
+    "host": "127.0.0.1",
+    "port": "23306",
+    "dialect": "mysql"
+  }
+}
