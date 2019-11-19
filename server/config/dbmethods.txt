@@ -53,6 +53,16 @@ function: removeHook
 function: hasHook
 function: hasHooks
 model: Role
+function: getPermissions
+function: countPermissions
+function: hasPermission
+function: hasPermissions
+function: setPermissions
+function: addPermission
+function: addPermissions
+function: removePermission
+function: removePermissions
+function: createPermission
 function: runHooks
 function: addHook
 function: removeHook

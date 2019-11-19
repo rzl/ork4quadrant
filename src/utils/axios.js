@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Message, MessageBox } from 'element-ui'
+import { MessageBox } from 'element-ui'
 import { getToken, removeToken } from '@/utils/auth'
 
 
@@ -9,6 +9,7 @@ var service = axios.create({
 })
 
 service.interceptors.request.use(config => {
+  console.log(getToken())
   config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
   return config
 }, error => {

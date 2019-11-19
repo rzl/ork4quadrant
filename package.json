@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve --port=8080",
     "build": "vue-cli-service build --dest=./server/public",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "service": "cd server && cnpm run start"
   },
   "dependencies": {
     "axios": "^0.19.0",

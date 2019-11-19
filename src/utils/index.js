@@ -1,3 +1,20 @@
+export function hasPermission(rule, permissions) {
+  if (typeof rule === 'string') {
+    rule = rule.replace(/\(/g,'( ')
+    rule = rule.replace(/\)/g,' )')
+    var str = rule.split(/\s+/).map((x) => {
+      if (['||', '&&', '(', ')'].indexOf(x) > -1) {
+        return x
+      } else {
+        return permissions.indexOf(x) > -1
+      }
+    }).join(' ')
+    return eval(str)
+  } else {
+    return false
+  }
+}
+
 export function listToTreeByParentId(list) {
   return listToTree(list, 'dingid', 'dingParentId')
 }

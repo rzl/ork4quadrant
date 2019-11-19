@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Role.associate = function(models) {
     // associations can be defined here
+    models.Role.belongsToMany(models.Permission, { through: 'PermissionRole' , as: 'permissions' })
 
   };
   return Role;

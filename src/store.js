@@ -19,26 +19,29 @@ export default new Vuex.Store({
     SET_USER_INFO: (state, userInfo) => {
       state.userInfo = userInfo
     },
+    CLEAR_INFO: (state) => {
+      state.SET_TOKEN = ''
+      state.SET_USER_INFO = {}
+      removeToken()
+    }
   },
   actions: {
     SetToken({ commit }, token) {
       commit('SET_TOKEN', token)
     },
 
-    Login( { commit } , userInfo) {
+    login( { commit } , userInfo) {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         axios.post('/users/login', {
           username: username, 
           password: userInfo.password
         }).then(response => {
-          console.log(response)
-          const data = response.data
-          setToken(data.token)
-          commit('SET_TOKEN', data.token)
+          const token = response.data
+          setToken(token)
+          commit('SET_TOKEN', token)
           resolve()
         }).catch(error => {
-          console.log(error)
           reject(error)
         })
       })
@@ -55,14 +58,13 @@ export default new Vuex.Store({
       })
     },
 
-    Logout({ commit }) {
+    logout({ commit }) {
       return new Promise((resolve, reject) => {
         axios.get('/users/Logout').then(() => {
-          commit('SET_TOKEN', '')
-          commit('SET_USER_INFO', {})
-          removeToken()
+          commit('CLEAR_INFO')
           resolve()
         }).catch(error => {
+          commit('CLEAR_INFO')
           reject(error)
         })
       })
