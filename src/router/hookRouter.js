@@ -8,11 +8,13 @@ export default function hookRouter(router) {
   router.beforeEach((to, from, next) => {
     console.log(to.path)
     console.log(getToken(to, from, next))
+    console.log(getToken(to, from, next))
     if (getToken(to, from, next)) {
       if (to.path === '/login') {
-        next({ path: '/' })
+        next()
       } else {
-        if (store.state.userInfo.permissions && store.state.userInfo.permissions.length === 0) { // 判断当前用户是否已拉取完user_info信息
+        console.log(store.state.userInfo)
+        if (!store.state.userInfo.permissions || store.state.userInfo.permissions.length === 0) { // 判断当前用户是否已拉取完user_info信息
           store.dispatch('freshUserInfo').then(res => { // 拉取user_info
             if (res.data.permissions.length === 0) { res.data.permissions.push('login') }
             const permissions = res.data.permissions // note: roles must be a array! such as: ['editor','develop']

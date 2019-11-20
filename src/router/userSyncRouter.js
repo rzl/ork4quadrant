@@ -1,16 +1,16 @@
 import Layout from '@/views/layout'
 export default [
   {
-    path: '/admin',
-    icon: 'zujian',
+    path: '/user',
+    icon: 'el-icon-menu',
     component: Layout,
     noDropdown: true,
     children: [
       { 
-        path: 'index',
+        path: 'home',
         name: '当月签到', 
-        icon: 'zonghe',
-        component: () => import('@/views/About')
+        icon: 'el-icon-menu',
+        component: () => import('@/views/Home')
       }
     ]
   }

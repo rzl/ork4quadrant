@@ -1,4 +1,5 @@
 import adminSyncRouter from './adminSyncRouter'
+import userSyncRouter from './userSyncRouter'
 import { hasPermission } from '@/utils'
 
 export function verifyPermission(permissions, permission) {
@@ -21,11 +22,11 @@ export function filterRouter(routers, permissions) {
 }
 
 export default function syncRouter(permissions) {
-	var syncRouters = [ adminSyncRouter ]
+	var syncRouters = [ adminSyncRouter, userSyncRouter ]
 	var routers = []
 	syncRouters.forEach((syncRoutes) => {
     syncRoutes.forEach((syncRoute) => {
-		  routers.push(syncRoute)
+      routers.push(syncRoute)
     })
 	})
 	return filterRouter(routers, permissions)

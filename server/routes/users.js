@@ -26,13 +26,13 @@ router.post('/login', function(req, res, next) {
 		  res.json({
 		    code: 0,
 		    data: token,
-		    msg: '登录成功'
+		    message: '登录成功'
 		  });
   	  } else {
   	  	res.json({
 		    code: 0,
 		    data: null,
-		    msg: '账号密码错误'
+		    message: '账号密码错误'
 		  });
   	  }
 
@@ -40,7 +40,7 @@ router.post('/login', function(req, res, next) {
   		res.json({
 	    code: 2000,
 	    data: null,
-	    msg: '账号密码错误'
+	    message: '账号密码错误'
 	  });
   	}
   })
@@ -48,9 +48,9 @@ router.post('/login', function(req, res, next) {
 
 router.get('/info', function(req, res, next) {
   var token = req.get('X-Token')
-  if (!token) { return res.json({ code: 5000, msg: 'token缺失'})}
+  if (!token) { return res.json({ code: 5000, message: 'token缺失'})}
   var user = jwt.verify(token, config.jsonwebtokensecret, (err, user) => {
-    if (err) { return res.json({ coode: 5001, msg: 'token不合法2'})}
+    if (err) { return res.json({ coode: 5001, message: 'token不合法2'})}
       console.log(user)
     userService.getUserInfo(user, (result) => {
       res.json({code: 0, data: result})

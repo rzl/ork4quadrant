@@ -21,6 +21,7 @@ service.interceptors.response.use(
   response => {
     if (response.data.code !== 0) {
       console.log(response.data)
+      return Promise.reject(response.data)
     }
     if (response.code === 50008 || response.code === 50012 || response.code === 50014) {
       MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {

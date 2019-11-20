@@ -15,7 +15,7 @@ var router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      redirect: '/user/home'
     },
     {
       path: '/login',
